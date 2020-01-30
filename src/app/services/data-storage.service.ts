@@ -62,7 +62,7 @@ export class DataStorageService {
             .valueChanges();
     }
 
-    getMovieFromWatchlist(userId: string, movieId: string) {
+    getMovieFromWatchlist(userId: string | number, movieId: string | number) {
         return this.angularFirestore
             .doc(`Playlist/${userId}`)
             .collection('watchlist')
@@ -77,7 +77,7 @@ export class DataStorageService {
             .valueChanges();
     }
 
-    updateWatchList(movie: { movieId: string, watched: boolean }, userId: string, callback: any) {
+    updateWatchList(movie: { movieId: string | number, watched: boolean }, userId: string, callback: any) {
         return this.angularFirestore
             .doc(`Playlist/${userId}`)
             .collection('watchlist')

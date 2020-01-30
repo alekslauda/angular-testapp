@@ -22,7 +22,7 @@ export class MoviesListItemComponent implements OnInit {
 
 
     ngOnInit() {
-        this.dataStorageService.getMovieFromWatchlist(this.user.uid, this.movie.id.toString()).subscribe(res => {
+        this.dataStorageService.getMovieFromWatchlist(this.user.uid, this.movie.id).subscribe(res => {
             this.isAddedToWatchlist = (typeof res !== 'undefined');
         });
     }
