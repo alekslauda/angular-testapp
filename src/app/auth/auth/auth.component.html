@@ -1,0 +1,112 @@
+<div class="container justify-content-center d-flex align-items-center">
+    <div class="card mt-5 w-50">
+        <div class="card-header">
+            <div class="btn-group d-flex">
+                <label
+                        for=""
+                        [(ngModel)]="authChoice"
+                        class="btn btn-primary"
+                        btnRadio="login"
+                        tabindex="0"
+                        role="button"
+                >
+                    Login
+                </label>
+                <label
+                        for=""
+                        [(ngModel)]="authChoice"
+                        class="btn btn-primary"
+                        btnRadio="register"
+                        tabindex="0"
+                        role="button"
+                >
+                    Register
+                </label>
+            </div>
+        </div>
+        <div class="card-body">
+            <form *ngIf="authChoice === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+                <div class="form-group">
+                    <label for="email">
+                        Email
+                    </label>
+                    <input type="email"
+                           class="form-control"
+                           formControlName="email" id="email"
+                           [ngClass]="{'is-invalid': !loginForm.get('email').valid && loginForm.get('email').dirty}"
+                    />
+                    <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').dirty"
+                         class="invalid-feedback d-block">
+                        Email field is required
+                    </div>
+                    <div *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').dirty"
+                         class="invalid-feedback d-block">
+                        Email is not valid
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                    </label>
+                    <input type="password" class="form-control" formControlName="password" id="password">
+                </div>
+                <div class="form-group">
+                    <button [disabled]="!loginForm.valid" type="submit" class="btn btn-success w-100">Login</button>
+                </div>
+                <alert *ngIf="loginError" type="danger">{{loginError}}</alert>
+            </form>
+
+            <form *ngIf="authChoice === 'register'" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
+                <div class="form-group">
+                    <label for="register-email">
+                        Enter email
+                    </label>
+                    <input
+                            type="email"
+                            class="form-control"
+                            formControlName="email"
+                            id="register-email"
+                            [ngClass]="{'is-invalid': !registerForm.get('email').valid && registerForm.get('email').dirty}"
+                    >
+                    <div *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').dirty"
+                         class="invalid-feedback d-block">
+                        Email field is required
+                    </div>
+                    <div *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').dirty"
+                         class="invalid-feedback d-block">
+                        Email is not valid
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">
+                        Enter password
+                    </label>
+                    <input
+                            type="password"
+                            class="form-control"
+                            formControlName="password"
+                            id="register-password"
+                            [ngClass]="{'is-invalid': !registerForm.get('password').valid && registerForm.get('password').dirty}"
+                    />
+                    <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').dirty"
+                         class="invalid-feedback d-block">
+                        Password field is required
+                    </div>
+                    <div *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').dirty"
+                         class="invalid-feedback d-block">
+                        Password should be at least 6 character
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success w-100" [disabled]="!registerForm.valid">Register</button>
+                </div>
+                <alert *ngIf="registerError" type="danger">{{registerError}}</alert>
+            </form>
+
+        </div>
+        <div class="card-footer">
+            <h5 class="card-title text-center mb-2">OR</h5>
+            <button class="btn btn-warning w-100" (click)="loginWithOauth('google')">Login with Google</button>
+        </div>
+    </div>
+</div>

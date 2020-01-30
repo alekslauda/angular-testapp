@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-center flex-column">
+        <h1>Movies to watch ({{watchlist.length}})</h1>
+        <div class="d-flex flex-row flex-wrap">
+            <div *ngFor="let movie of watchlist">
+                <div class="m-5 card bg-dark text-white">
+                    <img class="card-image shadow"
+                         [src]="'https://image.tmdb.org/t/p/w150_and_h225_bestv2/' + movie.poster_path"
+                         [alt]="movie.original_title">
+                    <button (click)="toggleMovieWatched(movie)" type="button" class="btn btn-warning">
+                        +/-
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center flex-column mt-5">
+        <h1>Watched movies ({{watchedMovies.length}})</h1>
+        <div class="d-flex flex-row flex-wrap">
+            <div *ngFor="let watchedMovie of watchedMovies">
+                <div class="m-5 card bg-dark text-white">
+                    <img class="card-image shadow"
+                         [src]="'https://image.tmdb.org/t/p/w150_and_h225_bestv2/' + watchedMovie.poster_path"
+                         [alt]="watchedMovie.original_title">
+                    <button (click)="toggleMovieWatched(watchedMovie)" type="button" class="btn btn-warning">
+                        +/-
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

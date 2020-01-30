@@ -1,0 +1,20 @@
+<div class="container mt-5">
+
+    <div class="row mb-5">
+        <label for="search-name">Search by name: </label>
+        <input id="search-name" type="text" class="form-control" [(ngModel)]="searchText">
+    </div>
+
+    <div class="row justify-content-center">
+        <app-people-list-item
+                *ngFor='let person of people | async | searchTextFilter: searchText'
+                [person]="person"
+                class="col-md-3 mb-5"
+        >
+        </app-people-list-item>
+    </div>
+
+    <div *ngIf="(people | async | searchTextFilter: searchText)?.length === 0">
+        <h3>No Results found.</h3>
+    </div>
+</div>

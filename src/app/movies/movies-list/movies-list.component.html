@@ -1,0 +1,47 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-12 d-flex justify-content-center">
+        <pagination [itemsPerPage]="movieListFilter.paginationItemsPerPage"
+                    [totalItems]="movieListFilter.total_results"
+                    [maxSize]="movieListFilter.paginationMaxSize"
+                    (pageChanged)="pageChanged($event)"
+                    [(ngModel)]="movieListFilter.page"
+        ></pagination>
+
+
+    </div>
+</div>
+<div class="container">
+    <app-movies-filters
+            (searchedYear)="onSearchedYear($event)"
+            (searchedGenre)="onSearchedGenre($event)"
+            (searchedSort)="onSearchedSort($event)"
+    ></app-movies-filters>
+
+    <div class="row movies-list">
+        <div *ngIf="movies?.length === 0">
+            <h5>No Results found.</h5>
+        </div>
+        <ng-template #elseBlock ngFor let-movie [ngForOf]="movies">
+            <app-movies-list-item
+                    *ngIf="user"
+                    class="col-lg-4 d-flex align-items-stretch mt-5"
+                    [movie]="movie"
+                    [user]="user"
+            >
+            </app-movies-list-item>
+        </ng-template>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-xs-12 col-12 d-flex justify-content-center">
+        <pagination [itemsPerPage]="movieListFilter.paginationItemsPerPage"
+                    [totalItems]="movieListFilter.total_results"
+                    [maxSize]="movieListFilter.paginationMaxSize"
+                    (pageChanged)="pageChanged($event)"
+                    [(ngModel)]="movieListFilter.page"
+        ></pagination>
+
+
+    </div>
+</div>

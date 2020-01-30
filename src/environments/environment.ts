@@ -3,8 +3,22 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+    production: false,
+    tmdb: {
+        API_URL: 'https://api.themoviedb.org/3',
+        API_KEY: '26aea44a8fc723eba9e717a1557ca18e'
+    },
+    fireBase: {
+        apiKey: 'AIzaSyAZfFYukP1PuYyTiG8hiUnl8QPvni7G6SU',
+        authDomain: 'movies-8e1c2.firebaseapp.com',
+        databaseURL: 'https://movies-8e1c2.firebaseio.com',
+        projectId: 'movies-8e1c2',
+        storageBucket: 'movies-8e1c2.appspot.com',
+        messagingSenderId: '451793416643',
+        appId: '1:451793416643:web:8067a44229366b730d8d76'
+    }
+}
+;
 
 /*
  * For easier debugging in development mode, you can import the following file

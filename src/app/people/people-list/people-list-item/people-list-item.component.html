@@ -1,0 +1,10 @@
+<a [routerLink]="['/people', person.id]">
+    <img class="card-img-top"
+         [src]="'https://image.tmdb.org/t/p/w235_and_h235_face/' + person.profile_path"
+         [alt]="person.name"
+    />
+    <div class="card-body">
+        <h5 class="card-title" style="white-space: nowrap">{{person.name}}</h5>
+        <p class="text-muted small">{{formatKnownFor(person.known_for).join(', ')}}</p>
+    </div>
+</a>

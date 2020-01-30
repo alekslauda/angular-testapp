@@ -1,0 +1,73 @@
+<div *ngIf="profileUpdateMessage" class="container mt-5 d-flex justify-content-center">
+    <div class="card w-50 border-0">
+        <div class="card-text text-center">
+            <alert dismissOnTimeout="3000" class="w-100" type="success">{{profileUpdateMessage}}</alert>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card mt-5 w-50">
+        <div class="card-header">
+            <h1 class="text-center">Update User Profile</h1>
+        </div>
+        <div class="card-body">
+            <form *ngIf="updateUserForm" [formGroup]="updateUserForm" (ngSubmit)="onUpdateUserFormSubmit()">
+                <div class="form-group">
+                    <label for="email">
+                        Email
+                    </label>
+                    <input type="email"
+                           class="form-control"
+                           formControlName="email" id="email"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="display_name">
+                        Name
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           formControlName="displayName" id="display_name"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">
+                        Phone Number
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           formControlName="phoneNumber" id="phone_number"
+                    />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="file">
+                                {{ updateUserForm.get('image').value.name }}
+                            </label>
+                            <input class="form-control-file"
+                                   type="file"
+                                   id="file"
+                                   (change)="handleFileInput($event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <img class="avatar"
+                             [src]="user?.photoURL ? user.photoURL : 'assets/images/empty_account_image.png'"/>
+                        <button *ngIf="user.photoURL" (click)="deleteProfilePhoto(user.photoURL)" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success w-100">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

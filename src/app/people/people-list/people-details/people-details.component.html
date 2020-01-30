@@ -1,0 +1,49 @@
+<div *ngIf="person" class="container p-0">
+    <div class="row">
+        <div class="col-4 bg-light">
+            <img
+                [src]="'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + person.profile_path"
+                [alt]="person.name"
+                class="shadow"
+            >
+            <div>
+                <section>
+                    <h4>Birthday</h4>
+                    <p>{{ person.birthday ? person.birthday : '-' }}</p>
+                </section>
+                <section>
+                    <h4>Popularity</h4>
+                    <p>{{ person.popularity ? person.popularity : '-' }}</p>
+                </section>
+                <section>
+                    <h4>Birthplace</h4>
+                    <p>{{ person.place_of_birth ? person.place_of_birth: '-' }}</p>
+                </section>
+            </div>
+        </div>
+        <div class="col-8">
+            <section>
+                <h1 class="mb-3">{{person.name}}</h1>
+                <h3>Biography</h3>
+                <p>{{person.biography}}</p>
+            </section>
+            <section>
+                <h4>Known For</h4>
+                <ul class="d-flex flex-row flex-wrap list-unstyled">
+                    <li *ngFor="let movie of movies">
+                        <a [routerLink]="['/movies', movie.id]">
+                            <div class="card bg-dark text-white">
+                                <img [src]="'https://image.tmdb.org/t/p/w150_and_h225_bestv2/' + movie.poster_path" [alt]="movie.title" class="shadow card-image">
+                            </div>
+                            <div class="card-image-overlay">
+                                <h5 class="card-title text-center">
+                                    {{ movie.title }}
+                                </h5>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>

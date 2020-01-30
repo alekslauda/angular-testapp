@@ -1,0 +1,36 @@
+<form [formGroup]="discoverMovieForm" class="mt-5">
+  <div class="row">
+    <div class="form-group col-4">
+      <label for="discoverYear">
+        Year
+      </label>
+      <select class="form-control" formControlName="discoverFromYear" id="discoverYear">
+        <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+      </select>
+    </div>
+    <div class="form-group col-4">
+      <label for="discoverGenre">
+        Genre
+      </label>
+      <select class="form-control" formControlName="discoverFromGenres" id="discoverGenre">
+        <option *ngFor="let genre of genres" [ngValue]="genre">{{
+          genre.label
+        }}</option>
+      </select>
+    </div>
+    <div class="form-group col-4">
+      <label for="discoverSort">
+        Sort by
+      </label>
+      <select
+        class="form-control"
+        formControlName="discoverFromSortOptions"
+        id="discoverSort"
+      >
+        <option *ngFor="let option of sortOptions" [ngValue]="option">{{
+          option.label
+        }}</option>
+      </select>
+    </div>
+  </div>
+</form>
